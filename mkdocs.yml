@@ -1,10 +1,10 @@
-site_name: Notas musicais
+site_name: as734x
 repo_url: https://github.com/luciodias/as734x
 repo_name: luciodias/as734x
 edit_uri: tree/main/docs
 
 theme:
-  name: batatinah
+  name: material
   language: pt-BR
   # logo: assets/logo.png
   # favicon: assets/logo.png
@@ -19,14 +19,14 @@ markdown_extensions:
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:materialx.emoji.to_svg
 
 extra_css:
   - stylesheets/extra.css
 
 watch:
-   - notas_musicais
+   - .
 
 plugins:
 - macros
