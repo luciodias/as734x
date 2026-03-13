@@ -1,0 +1,17 @@
+
+- https://github.com/adafruit/Adafruit_AS7341
+- https://github.com/adafruit/Adafruit_CircuitPython_AS7341
+- https://github.com/adafruit/Adafruit-AS7341-PCB
+- https://github.com/sparkfun/SparkFun_AS7341X_Arduino_Library
+- https://github.com/K0I05/ESP32-S3_ESP-IDF_COMPONENTS
+- https://github.com/iorodeo/multichan_colorimeter_firmware
+- https://github.com/pchwalek/STM32_AS7341
+- https://github.com/AndreyUdeneew/AS7341_spectrometer/tree/main
+- https://github.com/scientistnobee/Pocket-Spectrometer
+- https://github.com/michaelshanedawson/AS7341-ESP32-I2C-MAIN
+- https://github.com/tomoto/AS7341SpectrumMeter
+- https://github.com/Dthebe/AS7341-Calibration
+- https://github.com/AHSPC/AS7341_micropython
+- https://github.com/bethanylwu/AS7341-Spectrograph/
+- https://github.com/fgervais/project-stemmaqt-AS7341
+- https://github.com/KrystianMistewicz/AS7341_light_sensor
