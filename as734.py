@@ -1,6 +1,7 @@
 
 class _as734x:
     from micropython import const
+    import gc
 
     """
     Classe para controlar o módulo AS734x em Micropy.
@@ -61,3 +62,59 @@ class _as734x:
     FIFO_MAP = const(0xFC)
     FIFO_LVL = const(0xFD)
     FDATA = const(b'\xFE\xFF')
+    def __init__(self, i2c, address=0x39):
+        self.i2c = i2c
+        self.address = address
+        gc.collect()
+
+    def write_register(self, reg, data):
+        if isinstance(reg, bytes):
+            reg_addr = reg[0]
+        else:
+            reg_addr = reg
+        if isinstance(data, int):
+            data = bytearray([data])
+        elif isinstance(data, bytes):
+            data = bytearray(data)
+        self.i2c.writeto_mem(self.address, reg_addr, data)
+        gc.collect()
+
+    def read_register(self, reg, length=1):
+        if isinstance(reg, bytes):
+            reg_addr = reg[0]
+        else:
+            reg_addr = reg
+        data = self.i2c.readfrom_mem(self.address, reg_addr, length)
+        gc.collect()
+        return data
+
+    def read_channel(self, channel_reg):
+        if isinstance(channel_reg, bytes) and len(channel_reg) == 2:
+            low = self.read_register(channel_reg[0])
+            high = self.read_register(channel_reg[1])
+            return int.from_bytes(low + high, 'little')
+        else:
+            return int.from_bytes(self.read_register(channel_reg, 2), 'little')
+
+    def enable(self):
+        self.write_register(self.ENABLE, 0x01)
+        gc.collect()
+
+    def disable(self):
+        self.write_register(self.ENABLE, 0x00)
+        gc.collect()
+
+    def set_integration_time(self, time):
+        self.write_register(self.ATIME, time)
+        gc.collect()
+
+    def set_wait_time(self, time):
+        self.write_register(self.WTIME, time)
+        gc.collect()
+
+    def read_all_channels(self):
+        channels = []
+        for reg in [self.CH0_DATA, self.CH1_DATA, self.CH2_DATA, self.CH3_DATA, self.CH4_DATA, self.CH5_DATA]:
+            channels.append(self.read_channel(reg))
+        gc.collect()
+        return channels
